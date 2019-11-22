@@ -19,15 +19,91 @@ npm i
 npm run dev
 ```
 
+## Why Redux?
+
+Redux is used to manage the state of your data. Redux attempts to impose control on how and when updates occur within the data for your app.
+
+Use redux to control when, why and how data changes:
+
+- API server responses
+- Cached data
+- Locally created data that has not yet been persisted to the server
+- UI State
+
+- https://redux.js.org/basics/data-flow#data-flow
+- https://redux.js.org/introduction/motivation
+- https://redux.js.org/introduction/three-principles
+
+## State
+
+State is a single object. The state of your whole application is stored in an object tree:
+
+```
+{
+  isAuthenticated: false,
+  userProfile: {firstName: "Eric", lastName: "Foreman"}
+  customers: [
+    { id: 107, firstName: "Midge", lastName: "Pinciotti" },
+    { id: 209, firstName: "Bob", lastName: "Pinciotti" }
+  ],
+  whatsNewFeatures: [
+    {featureName: "dark mode", completed: true, displayOrder: 1},
+    {featureName: "connect with friends", completed: false, displayOrder: 2},
+    {featureName: "incognito mode", completed: false, displayOrder: 3}
+  ]
+}
+```
+
+- https://redux.js.org/glossary#state
+
+## Data Lifecycle / Uni-directional Flow of Data
+
+- https://redux.js.org/basics/data-flow
+
+> "all data in an application follows the same lifecycle pattern, making the logic of your app more predictable and easier to understand. t also encourages data normalization, so that you don't end up with multiple, independent copies of the same data that are unaware of one another."
+
+### Flow
+
+1. You call `store.dispatch(action)`. An **action** is a plain object describing _what happened_. For example:
+
+```js
+{ type: 'USER_SIGNED_IN', payload: {firstName: "Eric", lastName: "Foreman"} }
+```
+
+or
+
+```js
+{
+  type: 'USER_SIGNED_OUT'
+}
+```
+
+or
+
+```js
+{
+  type: FETCH_CUSTOMERS_SUCCESS, payload: [
+    { id: 107, firstName: "Midge", lastName: "Pinciotti" },
+    { id: 209, firstName: "Bob", lastName: "Pinciotti" }
+  ]
+}
+```
+
+> Think of an action as a headline in a newspaper article summarizing _what happened_.
+
 ## Step by Step
 
 ## Actions
 
 - https://redux.js.org/basics/actions#actions
+- https://redux.js.org/glossary#action
 
-Actions are payloads of information that send data from your application to your store. They are the only source of information for the store. You send them to the store using `store.dispatch()`.
-
-Actions are plain JavaScript objects. Actions must have a type property that indicates the type of action being performed. Types should typically be defined as string constants. Once your app is large enough, you may want to move them into a separate module.
+- An action is a plain JavaScript object.
+- An action represents an intention to change the state.
+- Actions are the only way to get data into the store.
+- Any data, whether from UI events, network callbacks, or other sources such as WebSockets needs to eventually be _dispatched_ as actions.
+- Actions must have a `type` field that indicates the type of action being performed. Types can be defined as constants and imported from another module.
+- Actions are payloads of information that send data from your application to your store. They are the only source of information for the store. You send them to the store using `store.dispatch()`.
 
 > Actions only describe _what happened, but don't describe how_ the application's state changes.
 
@@ -67,10 +143,16 @@ The `dispatch()` function can be accessed directly from the store as `store.disp
 
 ## Reducers and State
 
-- [e402eaa](https://github.com/tripott/redux-todo-reference-app/commit/e402eaaa8dac71b66146e255aab9721b4628648a)
+- [daf0b41](https://github.com/tripott/redux-todo-reference-app/commit/daf0b41235f617514e19f784c717e0af4cc5ed7d)
 
 - https://redux.js.org/basics/reducers
+- https://redux.js.org/glossary#reducer
 
+- A reducer reduces a collection of values down to a single value.
+- In Redux, the accumulated value is the `state` object, and the values being accumulated are _actions_.
+- Reducers calculate a new state given the previous state and an action.
+- Reducers must be pure functions.
+- Reducers must be free of side effects. i.e.: Do not put API calls within a reducer.
 - Reducers specify how the application's state changes in response to actions sent to the store. Remember that actions only describe _what happened_, but don't describe how the application's state changes.
 
 - All the application state is stored as a _single object_.
@@ -126,3 +208,11 @@ export default function todoApp(state = {}, action) {
   }
 }
 ```
+
+## Store
+
+- https://redux.js.org/basics/store
+
+The state of your whole application is stored in an object tree within a single store.
+
+The "store" is the object that brings together the actions (what happened) and the reducers (that update state based upon what happened).
