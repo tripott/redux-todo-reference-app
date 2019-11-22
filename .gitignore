@@ -1,0 +1,6 @@
+node_modules
+.env
+.vscide
+dist/
+.cache/
+.DS_Store
