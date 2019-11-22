@@ -42,7 +42,7 @@ const ADD_TODO = 'ADD_TODO'
 
 ## Action Creators
 
-- [c66a961](https://github.com/tripott/redux-todo-reference-app/commit/c66a96107a7dc708673f87ad0dd11acd0eb6e31d)
+- [02f25ab](https://github.com/tripott/redux-todo-reference-app/commit/02f25abb4be337470ded602e576e87be6052c564)
 
 - https://redux.js.org/basics/actions#action-creators
 
