@@ -67,6 +67,8 @@ The `dispatch()` function can be accessed directly from the store as `store.disp
 
 ## Reducers and State
 
+- [7cab79a](https://github.com/tripott/redux-todo-reference-app/commit/7cab79ad0dbee3437422490639607406e4a280aa)
+
 - https://redux.js.org/basics/reducers
 
 - Reducers specify how the application's state changes in response to actions sent to the store. Remember that actions only describe _what happened_, but don't describe how the application's state changes.

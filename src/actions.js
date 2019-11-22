@@ -31,4 +31,3 @@ export function toggleTodo(index) {
 export function setVisibilityFilter(filter) {
   return { type: SET_VISIBILITY_FILTER, filter }
 }
-\
