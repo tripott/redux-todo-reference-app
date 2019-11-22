@@ -29,6 +29,8 @@ Actions are payloads of information that send data from your application to your
 
 Actions are plain JavaScript objects. Actions must have a type property that indicates the type of action being performed. Types should typically be defined as string constants. Once your app is large enough, you may want to move them into a separate module.
 
+> Actions only describe _what happened, but don't describe how_ the application's state changes.
+
 ```js
 const ADD_TODO = 'ADD_TODO'
 
@@ -40,7 +42,7 @@ const ADD_TODO = 'ADD_TODO'
 
 ## Action Creators
 
-- [00997d0](https://github.com/tripott/redux-todo-reference-app/commit/00997d0afb5571690e6b00c476f7a35c50166819)
+- [c66a961](https://github.com/tripott/redux-todo-reference-app/commit/c66a96107a7dc708673f87ad0dd11acd0eb6e31d)
 
 - https://redux.js.org/basics/actions#action-creators
 
@@ -62,3 +64,27 @@ dispatch(addTodo(text))
 ```
 
 The `dispatch()` function can be accessed directly from the store as `store.dispatch()`, but more likely you'll access it using a helper like react-redux's `connect()`.
+
+## Reducers and State
+
+- https://redux.js.org/basics/reducers
+
+- Reducers specify how the application's state changes in response to actions sent to the store. Remember that actions only describe _what happened_, but don't describe how the application's state changes.
+
+- All the application state is stored as a _single object_.
+
+- Define the shape of the state object before writing any code.
+
+- You'll often find that you need to store some data, as well as some UI state, in the state tree. This is fine, but try to keep the data separate from the UI state.
+
+- After you define the state object, you can handle actions and change the state object through a _reducer_.
+
+## Handling Actions/Reducers
+
+- https://redux.js.org/basics/reducers#handling-actions
+
+- A reducer is a pure function that takes the previous state and a action as its parameters and returns the next state.
+
+It's very important that the reducer function stays pure with no side effects .DO NOT MUTATE THE ORIGINAL STATE, MAKE A COPY OF THE STATE AND CHANGE THE COPY! DO NOT PERFORM SIDE EFFECTS SUCH AS MAKING API CALLS OR ROUTING.
+
+DO NOT CALL NON-PURE FUNCTIONS such as DATE.now() or MATH.random(). Given the same arguments, it should calculate the next state and return it. No surprises. No side effects. No API calls. No mutations. Just a calculation.
