@@ -28,11 +28,16 @@ function todos(state = [], action) {
       ]
     case TOGGLE_TODO:
       return state.map((todo, index) => {
+        // if (index === action.index) {
+        //   return Object.assign({}, todo, {
+        //     completed: !todo.completed
+        //   })
+        // }
+
         if (index === action.index) {
-          return Object.assign({}, todo, {
-            completed: !todo.completed
-          })
+          return { ...state, completed: !todo.completed }
         }
+
         return todo
       })
     default:

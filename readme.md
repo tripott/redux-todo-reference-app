@@ -67,7 +67,7 @@ The `dispatch()` function can be accessed directly from the store as `store.disp
 
 ## Reducers and State
 
-- [7cab79a](https://github.com/tripott/redux-todo-reference-app/commit/7cab79ad0dbee3437422490639607406e4a280aa)
+- [e402eaa](https://github.com/tripott/redux-todo-reference-app/commit/e402eaaa8dac71b66146e255aab9721b4628648a)
 
 - https://redux.js.org/basics/reducers
 
@@ -90,3 +90,39 @@ The `dispatch()` function can be accessed directly from the store as `store.disp
 It's very important that the reducer function stays pure with no side effects .DO NOT MUTATE THE ORIGINAL STATE, MAKE A COPY OF THE STATE AND CHANGE THE COPY! DO NOT PERFORM SIDE EFFECTS SUCH AS MAKING API CALLS OR ROUTING.
 
 DO NOT CALL NON-PURE FUNCTIONS such as DATE.now() or MATH.random(). Given the same arguments, it should calculate the next state and return it. No surprises. No side effects. No API calls. No mutations. Just a calculation.
+
+## Spltting Reducers
+
+- https://redux.js.org/basics/reducers#splitting-reducers
+
+- We can rewrite the main reducer as a function that calls the reducers managing parts of the state, and combines them into a single object.
+
+- Note that each of these reducers is managing its own part of the global state. The state parameter is different for every reducer, and corresponds to the part of the state it manages.
+
+- This is already looking good! When the app is larger, we can split the reducers into separate files and keep them completely independent and managing different data domains.
+
+- Redux provides a utility called `combineReducers()`
+
+- All `combineReducers()` does is generate a function that calls your reducers with the slices of state selected according to their keys, and combines their results into a single object again.
+
+```js
+import { combineReducers } from 'redux'
+
+const todoApp = combineReducers({
+  visibilityFilter,
+  todos
+})
+
+export default todoApp
+```
+
+Note that this is equivalent to:
+
+```js
+export default function todoApp(state = {}, action) {
+  return {
+    visibilityFilter: visibilityFilter(state.visibilityFilter, action),
+    todos: todos(state.todos, action)
+  }
+}
+```
