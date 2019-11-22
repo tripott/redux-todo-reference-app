@@ -40,6 +40,8 @@ const ADD_TODO = 'ADD_TODO'
 
 ## Action Creators
 
+- [00997d0](https://github.com/tripott/redux-todo-reference-app/commit/00997d0afb5571690e6b00c476f7a35c50166819)
+
 - https://redux.js.org/basics/actions#action-creators
 
 Action creators are exactly that—functions that create actions. It's easy to conflate the terms “action” and “action creator”, so do your best to use the proper term.
