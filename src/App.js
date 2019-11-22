@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div>
       <Link to="/">
-        <header>My App Title</header>
+        <header>Reference App</header>
       </Link>
       <Router>
         <Home path="/" />
